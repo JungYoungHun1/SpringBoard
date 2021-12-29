@@ -12,4 +12,32 @@
         SELECT iboard, title, hits, rdt
         FROM t_board ORDER BY iboard DESC
     </select>
+
+    <select id="selBoard" resultType="BoardEntity">
+        SELECT * FROM t_board WHERE iboard=${iboard}
+    </select>
+
+    <update id="updBoard">
+        UPDATE t_board
+        SET
+        <choose>
+            <when test=" hits == 1 ">
+                hits = hits + 1
+            </when>
+            <otherwise>
+                <if test=" title != null and title != '' ">
+                    title = #{title},
+                </if>
+                <if test=' ctnt != null and ctnt != "" '>
+                    ctnt = #{ctnt},
+                </if>
+                mdt = current_timestamp()
+            </otherwise>
+        </choose>
+        WHERE iboard = ${iboard}
+    </update>
+
+    <delete id="delBoard">
+        DELETE FROM t_board WHERE iboard=${iboard}
+    </delete>
 </mapper>

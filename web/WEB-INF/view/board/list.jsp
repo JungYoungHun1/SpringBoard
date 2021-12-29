@@ -37,7 +37,7 @@
                     <th>작성일시</th>
                 </tr>
                 <c:forEach items="${requestScope.list}" var="item">
-                    <tr>
+                    <tr class="record" data-iboard="${item.iboard}<%-- onClick: moveToDetail(item.iboard)--%>">
                         <td>${item.iboard}</td>
                         <td>${item.title}</td>
                         <td>${item.hits}</td>
@@ -48,5 +48,6 @@
         </c:otherwise>
     </c:choose>
 </div>
+<script src="/res/js/board/list.js"></script>
 </body>
 </html>

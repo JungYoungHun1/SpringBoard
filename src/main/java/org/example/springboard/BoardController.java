@@ -22,6 +22,12 @@ public class BoardController {
         model.addAttribute("list", list);
     }
 
+    @GetMapping("/detail")
+    public void detail(Model model, BoardEntity entity){
+        service.updBoardHitsUp(entity);
+        model.addAttribute("data", service.selBoard(entity));
+    }
+
     @GetMapping("/write")
     public void write() {}
 
@@ -30,6 +36,22 @@ public class BoardController {
         System.out.println(entity);
         int result = service.insBoard(entity);
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/del")
+    public String del(BoardEntity entity){
+        int result = service.delBoard(entity);
+        return "redirect:/board/list";
+    }
+
+    @GetMapping("/mod")
+    public void modBoard(Model model, BoardEntity entity){
+        model.addAttribute("data", service.selBoard(entity));
+    }
+    @PostMapping("/mod")
+    public String modProc(BoardEntity entity){
+        int result = service.updBoard(entity);
+        return "redirect:/board/detail?iboard=" + entity.getIboard();
     }
 
 //    public String list() {
