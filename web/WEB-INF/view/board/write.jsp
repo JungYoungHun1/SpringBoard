@@ -8,12 +8,13 @@
 </head>
 <body>
 <h1>글쓰기</h1>
-<form action="/board/write" method="post">
-    <div><input type="text" name="title" placeholder="제목"></div>
-    <div><textarea name="ctnt" placeholder="내용"></textarea></div>
+<form id="msgWrite" action="/board/write" method="post" data-msg="${requestScope.msg}">
+    <div><input type="text" name="title" placeholder="제목" value="${requestScope.data.title}"></div>
+    <div><textarea name="ctnt" placeholder="내용">${requestScope.data.ctnt}</textarea></div>
     <div>
         <input type="submit" value="저장">
     </div>
 </form>
+<script src="/res/js/board/write.js"></script>
 </body>
 </html>

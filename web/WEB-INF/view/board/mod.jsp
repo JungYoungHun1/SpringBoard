@@ -9,13 +9,15 @@
 </head>
 <body>
 <h1>글수정</h1>
-<form action="/board/mod" method="post">
-    <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
-    <div><input type="text" name="title" placeholder="제목" value="<c:out value='${requestScope.data.title}'/>"></div>
+<form id="modmsg" action="/board/mod" method="post" data-msg="${requestScope.msg}">
+    <input type="hidden" name="iboard" value="${param.iboard}">
+    <div><input type="text" name="title" placeholder="제목" value="<c:out value="${requestScope.data.title}"/>"></div>
     <div><textarea name="ctnt" placeholder="내용"><c:out value="${requestScope.data.ctnt}"/></textarea></div>
     <div>
         <input type="submit" value="수정">
     </div>
 </form>
+<script src="/res/js/board/mod.js"></script>
+
 </body>
 </html>

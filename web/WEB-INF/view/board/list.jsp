@@ -16,12 +16,13 @@
 </head>
 <body>
 <h1>리스트</h1>
+<c:if test="${sessionScope.loginUser !=null}">
+    <div><a href="/board/write">글쓰기</a></div>
+    <div><a href="/user/logout">로그아웃</a></div>
+</c:if>
+<div><a href="/user/login"><button>로그인</button></a></div>
+<div><a href="/user/join"><button>회원가입</button></a></div>
 
-<div>
-    <a href="/board/write">
-        <button>글쓰기</button>
-    </a>
-</div>
 
 <div>
     <c:choose>
@@ -33,6 +34,7 @@
                 <tr>
                     <th>번호</th>
                     <th>제목</th>
+                    <th>작성자</th>
                     <th>조회수</th>
                     <th>작성일시</th>
                 </tr>
@@ -40,14 +42,16 @@
                     <tr class="record" data-iboard="${item.iboard}<%-- onClick: moveToDetail(item.iboard)--%>">
                         <td>${item.iboard}</td>
                         <td>${item.title}</td>
-                        <td>${item.hits}</td>
-                        <td>${item.rdt}</td>
+                        <td>${item.writerNm}</td>
+                        <td>${item.hit}</td>
+                        <td>${item.rdt eq item.mdt? item.rdt : item.mdt}${item.rdt eq item.mdt? "" : "(수정됨)"}</td>
                     </tr>
                 </c:forEach>
             </table>
         </c:otherwise>
     </c:choose>
 </div>
+
 <script src="/res/js/board/list.js"></script>
 </body>
 </html>
